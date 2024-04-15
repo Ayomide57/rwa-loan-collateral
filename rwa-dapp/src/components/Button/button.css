@@ -1,0 +1,38 @@
+.button {
+    font-family: Montserrat;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 22px;
+    letter-spacing: -0.231818px;
+    border: none;
+    height: 40px;
+    padding: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+.primaryBtn{
+    background-color: #2F0058;
+    font-family: Montserrat;
+    border-radius: 10px;
+    color: white;
+    border: none
+}
+.secondaryBtn {
+    background-color: white;
+    font-family: Montserrat;
+    border-radius: 10px;
+    color: #2F0058;
+    border: 2px solid #2F0058;
+}
+
+.orangeBtn {
+    background-color: #FE8B38;
+    font-family: Montserrat;
+    border-radius: 10px;
+    color: white;
+    border: none
+}
+
