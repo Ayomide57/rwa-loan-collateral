@@ -4,9 +4,16 @@ import styles from "@/styles/Home.module.css";
 import CustomInput from "@/components/CustomInput";
 import { useState } from "react";
 import CustomButton from "@/components/Button";
- import { Formik } from "formik";
+import { Formik } from "formik";
+
 
 const Home = () => {
+
+  const handleRegisterSubmit = (values: { name: string; companyname: string; phonenumber: number | undefined; address: string; }, setSubmitting: { (isSubmitting: boolean): void; (arg0: boolean): void; }) => {
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 400);
+  };
 
   return (
     <>
@@ -20,15 +27,12 @@ const Home = () => {
                 initialValues={{
                   name: "",
                   companyname: "",
-                  phonenumber: "",
+                  phonenumber: undefined,
                   address: "",
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
-                }}
+                onSubmit={(values, { setSubmitting }) =>
+                  handleRegisterSubmit(values, setSubmitting )
+                }
               >
                 {({
                   values,

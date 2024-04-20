@@ -11,7 +11,7 @@ contract Borrower is Ownable {
     event userCollateralEvent(
         bool verification_status,
         bool status,
-        //bytes32 document_hash,
+        string document_url,
         address indexed borrower,
         uint256 indexed collateral_id,
         uint256 price,
@@ -50,7 +50,7 @@ contract Borrower is Ownable {
     struct CollateralInfo{
         bool verification_status;
         bool status;
-        //bytes32 document_hash;
+        string document_url;
         address borrower;
         uint8 acres;//
         uint256 collateral_id;
@@ -74,7 +74,8 @@ contract Borrower is Ownable {
 
 
     mapping (address => CompanyInfo) public companyList;
-    mapping (address => mapping (uint256 => CollateralInfo)) private collateralList;
+    //collaterall uint256 = propertyId
+    mapping (address => mapping (uint256 => CollateralInfo)) public collateralList;
     mapping (address => mapping (uint256 => Loan)) public loanList;
 
 
@@ -108,7 +109,7 @@ contract Borrower is Ownable {
 
     function addColaterals(
         uint8 _acres,
-        //bytes6 _document_hash,
+        string memory _document_url,
         uint256 _price,
         uint256 _property_RegId,
         uint256 _survey_zip_code,
@@ -122,7 +123,7 @@ contract Borrower is Ownable {
         collateralList[msg.sender][_collateral_ids] = CollateralInfo( 
             false,
             false,
-            //_document_hash,
+            _document_url,
             msg.sender,
             _acres,
             _collateral_ids,
@@ -137,7 +138,7 @@ contract Borrower is Ownable {
         emit userCollateralEvent(
             false, 
             false,
-             //_document_hash, 
+             _document_url, 
              msg.sender, 
              _collateral_ids, 
              _price, 

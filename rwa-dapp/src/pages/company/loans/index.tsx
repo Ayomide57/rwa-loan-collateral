@@ -8,6 +8,7 @@ import { Formik } from "formik";
 import Link from "next/link";
 
 const Loan = () => {
+
   return (
     <>
       <div className="container">

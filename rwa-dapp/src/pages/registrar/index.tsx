@@ -7,6 +7,21 @@ import CustomButton from "@/components/Button";
 import { Formik } from "formik";
 
 const Registrar = () => {
+        const handleFindRwa = (
+          values: {
+            address: string;
+            property_RegId: number | undefined;
+          },
+          setSubmitting: {
+            (isSubmitting: boolean): void;
+            (arg0: boolean): void;
+          }
+        ) => {
+          setTimeout(() => {
+            setSubmitting(false);
+          }, 400);
+        };
+
   return (
     <>
       <div className="container">
@@ -17,14 +32,11 @@ const Registrar = () => {
               <Formik
                 initialValues={{
                   address: "",
-                  property_RegId: "",
+                  property_RegId: undefined,
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
-                }}
+                onSubmit={(values, { setSubmitting }) =>
+                  handleFindRwa(values, setSubmitting)
+                }
               >
                 {({
                   values,

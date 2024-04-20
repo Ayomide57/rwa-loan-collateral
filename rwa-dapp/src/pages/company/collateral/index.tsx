@@ -2,11 +2,60 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import CustomInput from "@/components/CustomInput";
-import { useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import CustomButton from "@/components/Button";
 import { Formik } from "formik";
+import { useStorageUpload } from "@thirdweb-dev/react";
+import { CID } from "multiformats/cid";
+import { base16 } from "multiformats/bases/base16";
+import { base64 } from "multiformats/bases/base64";
+import { base32 } from "multiformats/bases/base32";
+import { base58 } from "ethers/lib/utils";
+import { UploadToStorage } from "@/util";
+
+
 
 const Collateral = () => {
+  const [fileHash, setFileHash] = useState<any>();
+  const apiKey = process.env.NEXT_PUBLIC_FILECOIN || "";
+  const [ipfsLink, updateLink] = useState<any>();
+
+
+  /**const v0 = CID.parse(
+    "zQmdfTbBqBPQ7VNxZEYEj14VmRuZBkqFbiwReogJgS1zR1n",
+    base58
+  );**/
+
+    const handleAddCollateralSubmit = (
+      values: {
+        price: number | undefined;
+        property_RegId: number | undefined;
+        survey_zip_code: number | undefined;
+        survey_number: number | undefined;
+        property_type: string;
+        property_area: string;
+        prop_accessment_per_acre: number | undefined;
+        //documentHash: string
+      },
+      setSubmitting: { (isSubmitting: boolean): void; (arg0: boolean): void }
+    ) => {
+      setTimeout(() => {
+        setSubmitting(false);
+      }, 400);
+    };
+
+ // console.log(v0.toV1().toString());
+  //CID.parse(v0.toV1().toString(), base16.decoder);
+  //console.log("base16", CID.parse(v0.toV1().toString(), base32.decoder));
+
+
+  //"ipfs://QmbzMs3gHZ4XKpvxMgvVB15BfXtqq3ebSRv24GGGsFrrTP/Homework1.pdf"
+  //['ipfs://QmVxQ5djvZJ5TSx1MEpb8C7HcYn7fkuubtKyJTB1W93pWD/Homework2.pdf']
+  //0: "ipfs://QmVxQ5djvZJ5TSx1MEpb8C7HcYn7fkuubtKyJTB1W93pWD/Homework2.pdf"length: 1[[Prototype]]: Array(0)
+
+  useEffect(() => {
+    console.log(ipfsLink);
+  }, [ipfsLink]);
   return (
     <>
       <div className="container">
@@ -17,20 +66,17 @@ const Collateral = () => {
               <h1 className="">Add your collateral</h1>
               <Formik
                 initialValues={{
-                  price: "",
-                  property_RegId: "",
-                  survey_zip_code: "",
-                  survey_number: "",
+                  price: undefined,
+                  property_RegId: undefined,
+                  survey_zip_code: undefined,
+                  survey_number: undefined,
                   property_type: "",
                   property_area: "",
-                  prop_accessment_per_acre: "",
+                  prop_accessment_per_acre: undefined,
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
-                }}
+                onSubmit={(values, { setSubmitting }) =>
+                  handleAddCollateralSubmit(values, setSubmitting)
+                }
               >
                 {({
                   values,
@@ -43,53 +89,7 @@ const Collateral = () => {
                   /* and other goodies */
                 }) => (
                   <form onSubmit={handleSubmit}>
-                    <div className="flex w-full">
-                      <label htmlFor="myfile">
-                        <span className="mb-[2px] flex items-center gap-1 text-skin-text"></span>
-                        <div>
-                          <div className="relative">
-                            <div>
-                              <Image
-                                src="/avatarImage.jpg"
-                                className="rounded-full bg-skin-border object-cover"
-                                alt="avatar"
-                                width="80"
-                                height="80"
-                                style={{
-                                  minWidth: "80px",
-                                }}
-                              />
-                            </div>
-                            <div className="absolute bottom-0 left-0 right-0 top-0"></div>
-                            <div className="absolute bottom-[2px] right-0 rounded-full bg-skin-heading p-1">
-                              <svg
-                                viewBox="0 0 24 24"
-                                width="1.2em"
-                                height="1.2em"
-                                className="text-[12px] text-skin-bg"
-                              >
-                                <path
-                                  fill="none"
-                                  stroke="currentColor"
-                                  strokeLinecap="round"
-                                  strokeLinejoin="round"
-                                  strokeWidth="2"
-                                  d="m15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 1 1 3.536 3.536L6.5 21.036H3v-3.572L16.732 3.732Z"
-                                ></path>
-                              </svg>
-                            </div>
-                          </div>
-                        </div>
-                        <input
-                          className="h-[80px]"
-                          id="myfile"
-                          type="file"
-                          accept="image/jpg, image/jpeg, image/png"
-                          style={{ display: "none" }}
-                          //onChange={(event) => uploadFile(event)}
-                        />
-                      </label>
-                    </div>
+                    <UploadToStorage updateLink={updateLink} />
                     <CustomInput
                       value={values.price}
                       placeholder="Amount"

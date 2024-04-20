@@ -6,7 +6,20 @@ import { useState } from "react";
 import CustomButton from "@/components/Button";
 import { Formik } from "formik";
 
+
 const LoanRequest = () => {
+      const handleLoanRequest = (
+        values: {
+          amount: number | undefined;
+          property_RegId: number | undefined;
+        },
+        setSubmitting: { (isSubmitting: boolean): void; (arg0: boolean): void }
+      ) => {
+        setTimeout(() => {
+          setSubmitting(false);
+        }, 400);
+      };
+
   return (
     <>
       <div className="container">
@@ -16,20 +29,12 @@ const LoanRequest = () => {
             <div className="p-4">
               <Formik
                 initialValues={{
-                  price: "",
-                  property_RegId: "",
-                  survey_zip_code: "",
-                  survey_number: "",
-                  property_type: "",
-                  property_area: "",
-                  prop_accessment_per_acre: "",
+                  amount: undefined,
+                  property_RegId: undefined,
                 }}
-                onSubmit={(values, { setSubmitting }) => {
-                  setTimeout(() => {
-                    alert(JSON.stringify(values, null, 2));
-                    setSubmitting(false);
-                  }, 400);
-                }}
+                onSubmit={(values, { setSubmitting }) =>
+                  handleLoanRequest(values, setSubmitting)
+                }
               >
                 {({
                   values,
@@ -43,14 +48,14 @@ const LoanRequest = () => {
                 }) => (
                   <form onSubmit={handleSubmit}>
                     <CustomInput
-                      value={values.price}
+                      value={values.amount}
                       placeholder="Amount"
-                      name="price"
+                      name="amount"
                       style={{ color: "black" }}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.price && touched.price && errors.price}
+                    {errors.amount && touched.amount && errors.amount}
                     <CustomInput
                       value={values.property_RegId}
                       placeholder="property registration number"

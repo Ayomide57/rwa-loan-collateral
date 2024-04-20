@@ -26,7 +26,6 @@ contract Lender is Ownable{
     struct Loan {
         Status loan_state;
         address borrower;
-        //bytes32 agreement_hash;
         uint8 loan_amount_term;
         uint8 credit_history;
         uint256 loan_id;
@@ -36,19 +35,20 @@ contract Lender is Ownable{
         string property_type;
         string property_area;
         string biz_id;
+        //string documentUri;
         mapping(address => bool) owners;
     }
 
     struct LoanRequest{
         bool verification_status;
         address borrower;
-        //bytes32 document_hash;//
         uint8 acres;//
         uint256 amount;
         uint256 property_RegId;//
         uint256 survey_zip_code;//
         uint256 survey_number;//
         uint256 request_id;
+        string documentUri;
     }
 
     mapping (address => mapping (uint256 => LoanRequest)) public requestList;
@@ -74,13 +74,13 @@ contract Lender is Ownable{
     event loanRequestEvent(
         bool verification_status,
         address borrower,
-        //bytes32 document_hash,
         uint8 acres,
         uint256 amount,
         uint256 property_RegId,
         uint256 survey_zip_code,
         uint256 survey_number,
-        uint256 request_id
+        uint256 request_id,
+        string documentUri
     );
 
 
@@ -91,12 +91,12 @@ contract Lender is Ownable{
 
     function loanRequest(
         address _borrower,
-        //bytes32 _document_hash,
         uint8 _acres,
         uint256 _amount,
         uint256 _property_RegId,
         uint256 _survey_zip_code,
-        uint256 _survey_number
+        uint256 _survey_number,
+        string memory _documentUri
     ) 
         external 
         returns (Status)
@@ -105,23 +105,23 @@ contract Lender is Ownable{
         requestList[_borrower][_request_ids] = LoanRequest(
             false,
             _borrower, 
-            //_document_hash, 
             _acres, 
             _amount, 
             _property_RegId, 
             _survey_zip_code, 
             _survey_number,
-            _request_ids
+            _request_ids,
+            _documentUri
         );
         emit loanRequestEvent(
             false, 
             _borrower, 
-            //_document_hash, 
             _acres, _amount, 
             _property_RegId, 
             _survey_zip_code,
              _survey_number, 
-             _request_ids
+             _request_ids,
+             _documentUri
             );
         _request_ids++;
         return Status(1);
