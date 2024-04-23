@@ -191,7 +191,7 @@ contract Registrar is ERC721URIStorage, Ownable {
 
 // Lightout, lekan, lagos, 8147643756
 
-// 20, QmbzMs3gHZ4XKpvxMgvVB15BfXtqq3ebSRv24GGGsFrrTP, 1000000, 123, 100112, 133, land, los angeles, 100000
+// 20, ipfs://QmbzMs3gHZ4XKpvxMgvVB15BfXtqq3ebSRv24GGGsFrrTP/Homework1.pdf, 1000000, 123, 100112, 133, land, los angeles, 100000
 
 //request loan
 // 0x5c6B0f7Bf3E7ce046039Bd8FABdfD3f9F5021678, 20, 1000000, 123, 100112, 133
@@ -202,3 +202,6 @@ contract Registrar is ERC721URIStorage, Ownable {
 // collateral
 // 33, QmbzMs3gHZ4XKpvxMgvVB15BfXtqq3ebSRv24GGGsFrrTP, 1000000
 
+// property ID 123, 100000
+
+// 0x4B20993Bc481177ec7E8f571ceCaE8A9e22C02db, 10, 100, 80000, 100000, 123, 120ert

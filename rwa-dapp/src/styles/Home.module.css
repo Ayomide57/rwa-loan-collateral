@@ -156,6 +156,9 @@ span.button:hover {
   padding: 1rem;
   padding-bottom: 1.75rem;
 }
+.mainbody header {
+  background-color: black;
+}
 
 .header .buttons {
   display: flex;

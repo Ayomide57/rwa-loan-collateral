@@ -10,12 +10,10 @@ import { readContract } from "@wagmi/core";
 
 import { config } from "./config";
 import {
-  borrowerAbi,
   registrarAbi,
-  lenderAbi,
-  lenderAddresses,
+  chaincreditAbi,
+  chaincreditAddress,
   registrarAddresses,
-  borrowerAddresses,
 } from "./constants";
 
 interface IUploadFile {
@@ -62,8 +60,8 @@ export const registerCompany = async (values: {
   companyaddress: string;
 }) => {
   const response = await readContract({
-    address: borrowerAddresses,
-    abi: borrowerAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "register",
     args: [values.name, values.companyname, values.companyaddress, values.phonenumber],
   });
@@ -82,8 +80,8 @@ export const addCompanyCollateral = async (values: {
   prop_accessment_per_acre: number;
 }) => {
   const response = await readContract({
-    address: borrowerAddresses,
-    abi: borrowerAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "addColaterals",
     args: [values.acres, values.documenturl, values.price, values.property_RegId, values.survey_zip_code, values.survey_number, values.property_type, values.property_area, values.prop_accessment_per_acre],
   });
@@ -94,8 +92,8 @@ export const loanRequest = async (values: {
   property_RegId: number;
 }) => {
   const response = await readContract({
-    address: borrowerAddresses,
-    abi: borrowerAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "loanRequest",
     args: [values.property_RegId, values.amount],
   });
@@ -106,8 +104,8 @@ export const retrieveCompanyCollateralInfo = async (values: {
   property_RegId: number;
 }) => {
   const response = await readContract({
-    address: borrowerAddresses,
-    abi: borrowerAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "retrieveCompanyCollateralInfo",
     args: [values.address, values.property_RegId],
   });
@@ -118,8 +116,8 @@ export const loanList = async (values: {
   loanId: number;
 }) => {
   const response = await readContract({
-    address: borrowerAddresses,
-    abi: borrowerAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "loanList",
     args: [values.address, values.loanId],
   });
@@ -130,8 +128,8 @@ export const collateralList = async (values: {
   property_RegId: number;
 }) => {
   const response = await readContract({
-    address: borrowerAddresses,
-    abi: borrowerAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "collateralList",
     args: [values.address, values.property_RegId],
   });
@@ -234,8 +232,8 @@ export const loanRequestLender = async (values: {
   documentUri: string;
 }) => {
   const response = await readContract({
-    address: lenderAddresses,
-    abi: lenderAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "loanRequest",
     args: [values.borrower, values.acres, values.amount, values.property_RegId, values.survey_zip_code, values.survey_number, values.documentUri],
   });
@@ -253,8 +251,8 @@ export const createLoanLender = async (values: {
   property_area: string;
 }) => {
   const response = await readContract({
-    address: lenderAddresses,
-    abi: lenderAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "create_loan",
     args: [
       values.borrower,
@@ -275,8 +273,8 @@ export const verificationRequestLender = async (values: {
   request_id: number;
 }) => {
   const response = await readContract({
-    address: lenderAddresses,
-    abi: lenderAbi,
+    address: chaincreditAddress,
+    abi: chaincreditAbi,
     functionName: "verification_request",
     args: [values.borrower, values.request_id],
   });

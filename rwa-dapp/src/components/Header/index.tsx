@@ -27,9 +27,9 @@ const Header = () => {
       <div className={styles.header}>
         <div className={styles.logo}>
           <Image
-            src="/logo.svg"
-            alt="WalletConnect Logo"
-            height="32"
+            src="/chaincredit1.png"
+            alt="ChainCredit Logo"
+            height="150"
             width="203"
           />
         </div>

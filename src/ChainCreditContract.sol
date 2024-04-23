@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract LenderContract is Ownable{
+contract ChainCreditContract is Ownable{
 
     /**
    * @dev Prints Hello World string
@@ -116,7 +116,7 @@ contract LenderContract is Ownable{
     mapping (address => mapping (uint256 => Loan)) public loanList;
     mapping (address => CompanyInfo) public companyList;
     //collaterall uint256 = propertyId
-    mapping (address => mapping (uint256 => CollateralInfo)) public collateralList;
+    mapping (address => mapping (uint256 => CollateralInfo)) private collateralList;
 
     modifier companyAlreadyExist {
       require(companyList[msg.sender].existed == false);
@@ -124,9 +124,15 @@ contract LenderContract is Ownable{
   }
 
     modifier collateralDoesntExist(uint256 _property_RegId) {
+        require(collateralList[msg.sender][_property_RegId].exist == false);
+        _;
+    }
+
+    modifier collateralExist(uint256 _property_RegId) {
         require(collateralList[msg.sender][_property_RegId].exist == true);
         _;
     }
+
 
     //constructor
     constructor(address _registrar) Ownable(msg.sender) {
@@ -236,7 +242,7 @@ contract LenderContract is Ownable{
         uint256 _property_RegId,
         uint256 _amount
     ) 
-    collateralDoesntExist(_property_RegId)
+    collateralExist(_property_RegId)
     public {
         // save Loan request information
 

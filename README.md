@@ -1,17 +1,16 @@
-## Foundry
+## ChainCredit
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+## Title
+Revolutionizing Lending: Blockchain-Based Platform with Real-World Asset Collateral
 
-Foundry consists of:
+## Problem
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
+Title: Traditional Lending Limitations
+Bullets:
+Lack of accessibility to loans for many individuals and businesses.
+Lengthy approval processes and high interest rates.
+Limited transparency and trust in traditional lending institutions.
+Inadequate collateral options for borrowers.
 
 ## Usage
 
