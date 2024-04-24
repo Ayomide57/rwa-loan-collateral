@@ -279,6 +279,20 @@ contract ChainCreditContract is Ownable{
         (success,) = registrar.call(abi.encodeWithSignature("verification_request(address, uint256, uint256, uint256)", _borrower, request.property_RegId, collateral.survey_zip_code, collateral.survey_number));
         return success;
     }
+
+    function getCompany(address _borrower) public view returns (CompanyInfo memory) {
+        return companyList[_borrower];
+    }
+
+    function getCollateral(
+        address _borrower,
+        uint256 _property_RegId
+        ) 
+    public
+    view
+    returns (CollateralInfo memory) {
+        return collateralList[_borrower][_property_RegId];
+    }
 }
 
 

@@ -2,38 +2,38 @@ import Head from "next/head";
 import Image from "next/image";
 import styles from "@/styles/Home.module.css";
 import CustomInput from "@/components/CustomInput";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import CustomButton from "@/components/Button";
 import { Formik } from "formik";
-import { useStorageUpload } from "@thirdweb-dev/react";
-import { UploadToStorage } from "@/util";
+import { UploadToStorage, createNewRwa } from "@/util";
+import Link from "next/link";
 
 
 const CreateNewRwa = () => {
-    const [ipfsLink, updateLink] = useState<string>();
-    const { mutateAsync: upload } = useStorageUpload();
-
-    const uploadFile = async (event: ChangeEvent<HTMLInputElement | null>) => {
-      let file = event.currentTarget.files && event.currentTarget.files[0];
-      const uris = await upload({ data: [file] });
-      updateLink(uris[0]);
-    };
+    const [ipfsLink, updateLink] = useState<any>();
 
       const handleCreateNewRwaSubmit = (
         values: {
-          address: string;
-          price: number | undefined;
-          property_RegId: number | undefined;
-          survey_zip_code: number | undefined;
-          survey_number: number | undefined;
-          tokenURI: string | undefined;
+          rwaOwner: any;
+          price: number;
+          property_RegId: number;
+          survey_zip_code: number;
+          survey_number: number;
+          tokenURI: string;
         },
         setSubmitting: { (isSubmitting: boolean): void; (arg0: boolean): void }
       ) => {
-        setTimeout(() => {
+        setTimeout(async () => {
+          console.log(values);
+          const response = await createNewRwa(values);
+          console.log(response);
           setSubmitting(false);
         }, 400);
       };
+  
+  useEffect(() => {
+console.log(ipfsLink)
+  },[ipfsLink])
 
 
   return (
@@ -45,11 +45,11 @@ const CreateNewRwa = () => {
             <div className="p-4">
               <Formik
                 initialValues={{
-                  address: "",
-                  price: undefined,
-                  property_RegId: undefined,
-                  survey_zip_code: undefined,
-                  survey_number: undefined,
+                  rwaOwner: ``,
+                  price: 0,
+                  property_RegId: 0,
+                  survey_zip_code: 0,
+                  survey_number: 0,
                   tokenURI: ipfsLink,
                 }}
                 onSubmit={(values, { setSubmitting }) =>
@@ -69,16 +69,14 @@ const CreateNewRwa = () => {
                   <form onSubmit={handleSubmit}>
                     <UploadToStorage updateLink={updateLink} />
                     <CustomInput
-                      value={values.address}
-                      placeholder="owner address"
-                      name="address"
+                      placeholder="Owner address"
+                      name="rwaOwner"
                       style={{ color: "black" }}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
-                    {errors.address && touched.address && errors.address}
+                    {errors.rwaOwner && touched.rwaOwner && errors.rwaOwner}
                     <CustomInput
-                      value={values.price}
                       placeholder="Amount"
                       name="price"
                       style={{ color: "black" }}
@@ -87,7 +85,6 @@ const CreateNewRwa = () => {
                     />
                     {errors.price && touched.price && errors.price}
                     <CustomInput
-                      value={values.property_RegId}
                       placeholder="property registration number"
                       name="property_RegId"
                       style={{ color: "black" }}
@@ -98,7 +95,6 @@ const CreateNewRwa = () => {
                       touched.property_RegId &&
                       errors.property_RegId}
                     <CustomInput
-                      value={values.survey_zip_code}
                       placeholder="survey zip code"
                       name="survey_zip_code"
                       style={{ color: "black" }}
@@ -109,7 +105,6 @@ const CreateNewRwa = () => {
                       touched.survey_zip_code &&
                       errors.survey_zip_code}{" "}
                     <CustomInput
-                      value={values.survey_number}
                       placeholder="survey number"
                       name="survey_number"
                       style={{ color: "black" }}
@@ -124,7 +119,7 @@ const CreateNewRwa = () => {
                       type={"button"}
                       style={{ float: "inline-end" }}
                       disabled={isSubmitting}
-                      onClick={() => handleSubmit}
+                      onClick={handleSubmit}
                     />
                   </form>
                 )}

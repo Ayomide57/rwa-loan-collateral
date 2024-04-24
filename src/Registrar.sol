@@ -53,7 +53,7 @@ contract Registrar is ERC721URIStorage, Ownable {
         _;
     }
 
-    constructor() ERC721("RegistrarProperties", "RPI") Ownable(msg.sender) {}
+    constructor() ERC721("GovermentPropertyRegistration", "RPR") Ownable(msg.sender) {}
 
     function generateRwa(
         address _rwaOwner,

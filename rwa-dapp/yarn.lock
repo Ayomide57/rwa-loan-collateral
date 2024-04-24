@@ -4912,6 +4912,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"abitype@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "abitype@npm:1.0.2"
+  peerDependencies:
+    typescript: ">=5.0.4"
+    zod: ^3 >=3.22.0
+  peerDependenciesMeta:
+    typescript:
+      optional: true
+    zod:
+      optional: true
+  checksum: 0986ec822ad279e7ea1d15398f88bad335a58419799f8ba80e3d5712fdd5a2b5858b387a1213d9da31571c3a42d10ca878a463cce11dae1bb17dbe4deeb40db4
+  languageName: node
+  linkType: hard
+
 "abort-controller@npm:^3.0.0":
   version: 3.0.0
   resolution: "abort-controller@npm:3.0.0"
@@ -10583,6 +10598,7 @@ __metadata:
     "@types/react": 18.2.52
     "@types/react-dom": 18.2.18
     "@web3modal/wagmi": 3.5.7
+    abitype: ^1.0.2
     autoprefixer: ^10.4.19
     eslint: 8.56.0
     eslint-config-next: 13.5.6

@@ -5,27 +5,45 @@ import CustomInput from "@/components/CustomInput";
 import { useState } from "react";
 import CustomButton from "@/components/Button";
 import { Formik } from "formik";
+import Link from "next/link";
 
 const Registrar = () => {
-        const handleFindRwa = (
-          values: {
-            address: string;
-            property_RegId: number | undefined;
-          },
-          setSubmitting: {
-            (isSubmitting: boolean): void;
-            (arg0: boolean): void;
-          }
-        ) => {
-          setTimeout(() => {
-            setSubmitting(false);
-          }, 400);
-        };
+  const handleFindRwa = (
+    values: {
+      address: string;
+      property_RegId: number | undefined;
+    },
+    setSubmitting: {
+      (isSubmitting: boolean): void;
+      (arg0: boolean): void;
+    }
+  ) => {
+    setTimeout(() => {
+      setSubmitting(false);
+    }, 400);
+  };
 
   return (
     <>
       <div className="container">
         <h1 className="p-4 text-3xl">Find Property Information</h1>
+        <button
+          style={{
+            color: "white",
+            padding: "10px",
+            border: "2px solid white",
+            marginTop: "10px",
+            marginLeft: "20px",
+          }}
+        >
+          {" "}
+          <Link
+            href={"/registrar/create-rwa"}
+            style={{ color: "white", padding: "10px" }}
+          >
+            Create New Real World Asset
+          </Link>
+        </button>
         <div className={styles.content}>
           <div className="container mx-auto">
             <div className="p-4">

@@ -31,7 +31,7 @@ const CustomInput: React.FC<ICustomInput> = (props) => {
           onChange={props.onChange}
           onBlur={props.onBlur}
           name={props.name}
-          value={props.value}
+          value={props.value && props.value}
         />
       </div>
     );

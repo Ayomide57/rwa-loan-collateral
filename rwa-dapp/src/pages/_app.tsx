@@ -16,6 +16,7 @@ import {
   optimism,
   polygon,
   sepolia,
+  shardeumSphinx,
 } from "wagmi/chains";
 import { ThirdwebProvider } from "@thirdweb-dev/react";
 
@@ -29,6 +30,7 @@ const chains = [
   optimism,
   gnosis,
   fantom,
+  shardeumSphinx
 ];
 
 // 1. Get projectID at https://cloud.walletconnect.com

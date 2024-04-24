@@ -11,47 +11,34 @@ import { base16 } from "multiformats/bases/base16";
 import { base64 } from "multiformats/bases/base64";
 import { base32 } from "multiformats/bases/base32";
 import { base58 } from "ethers/lib/utils";
-import { UploadToStorage } from "@/util";
+import { UploadToStorage, addCompanyCollateral } from "@/util";
 
 
 
 const Collateral = () => {
-  const [fileHash, setFileHash] = useState<any>();
-  const apiKey = process.env.NEXT_PUBLIC_FILECOIN || "";
   const [ipfsLink, updateLink] = useState<any>();
-
-
-  /**const v0 = CID.parse(
-    "zQmdfTbBqBPQ7VNxZEYEj14VmRuZBkqFbiwReogJgS1zR1n",
-    base58
-  );**/
 
     const handleAddCollateralSubmit = (
       values: {
-        price: number | undefined;
-        property_RegId: number | undefined;
-        survey_zip_code: number | undefined;
-        survey_number: number | undefined;
+        acres: number;
+        documenturl: string;
+        price: number;
+        property_RegId: number;
+        survey_zip_code: number;
+        survey_number: number;
         property_type: string;
         property_area: string;
-        prop_accessment_per_acre: number | undefined;
-        //documentHash: string
+        prop_accessment_per_acre: number;
       },
       setSubmitting: { (isSubmitting: boolean): void; (arg0: boolean): void }
     ) => {
-      setTimeout(() => {
+      setTimeout(async () => {
+        console.log(values);
+        const response = await addCompanyCollateral(values);
+        console.log(response);
         setSubmitting(false);
       }, 400);
     };
-
- // console.log(v0.toV1().toString());
-  //CID.parse(v0.toV1().toString(), base16.decoder);
-  //console.log("base16", CID.parse(v0.toV1().toString(), base32.decoder));
-
-
-  //"ipfs://QmbzMs3gHZ4XKpvxMgvVB15BfXtqq3ebSRv24GGGsFrrTP/Homework1.pdf"
-  //['ipfs://QmVxQ5djvZJ5TSx1MEpb8C7HcYn7fkuubtKyJTB1W93pWD/Homework2.pdf']
-  //0: "ipfs://QmVxQ5djvZJ5TSx1MEpb8C7HcYn7fkuubtKyJTB1W93pWD/Homework2.pdf"length: 1[[Prototype]]: Array(0)
 
   useEffect(() => {
     console.log(ipfsLink);
@@ -66,13 +53,15 @@ const Collateral = () => {
               <h1 className="">Add your collateral</h1>
               <Formik
                 initialValues={{
-                  price: undefined,
-                  property_RegId: undefined,
-                  survey_zip_code: undefined,
-                  survey_number: undefined,
+                  acres: 0,
+                  documenturl: ipfsLink,
+                  price: 0,
+                  property_RegId: 0,
+                  survey_zip_code: 0,
+                  survey_number: 0,
                   property_type: "",
                   property_area: "",
-                  prop_accessment_per_acre: undefined,
+                  prop_accessment_per_acre: 0,
                 }}
                 onSubmit={(values, { setSubmitting }) =>
                   handleAddCollateralSubmit(values, setSubmitting)
@@ -91,7 +80,16 @@ const Collateral = () => {
                   <form onSubmit={handleSubmit}>
                     <UploadToStorage updateLink={updateLink} />
                     <CustomInput
-                      value={values.price}
+                      //value={values.price}
+                      placeholder="Acres"
+                      name="acres"
+                      style={{ color: "black" }}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {errors.acres && touched.acres && errors.acres}
+                    <CustomInput
+                      //value={values.price}
                       placeholder="Amount"
                       name="price"
                       style={{ color: "black" }}
@@ -100,7 +98,7 @@ const Collateral = () => {
                     />
                     {errors.price && touched.price && errors.price}
                     <CustomInput
-                      value={values.property_RegId}
+                      //value={values.property_RegId}
                       placeholder="property registration number"
                       name="property_RegId"
                       style={{ color: "black" }}
@@ -111,7 +109,7 @@ const Collateral = () => {
                       touched.property_RegId &&
                       errors.property_RegId}
                     <CustomInput
-                      value={values.survey_zip_code}
+                      //value={values.survey_zip_code}
                       placeholder="survey zip code"
                       name="survey_zip_code"
                       style={{ color: "black" }}
@@ -122,7 +120,7 @@ const Collateral = () => {
                       touched.survey_zip_code &&
                       errors.survey_zip_code}{" "}
                     <CustomInput
-                      value={values.survey_number}
+                      //value={values.survey_number}
                       placeholder="survey number"
                       name="survey_number"
                       style={{ color: "black" }}
@@ -133,7 +131,7 @@ const Collateral = () => {
                       touched.survey_number &&
                       errors.survey_number}
                     <CustomInput
-                      value={values.property_type}
+                      //value={values.property_type}
                       placeholder="property type"
                       name="property_type"
                       style={{ color: "black" }}
@@ -144,7 +142,7 @@ const Collateral = () => {
                       touched.property_type &&
                       errors.property_type}
                     <CustomInput
-                      value={values.property_area}
+                      //value={values.property_area}
                       placeholder="property area"
                       name="property_area"
                       style={{ color: "black" }}
@@ -155,7 +153,7 @@ const Collateral = () => {
                       touched.property_area &&
                       errors.property_area}{" "}
                     <CustomInput
-                      value={values.prop_accessment_per_acre}
+                      //value={values.prop_accessment_per_acre}
                       placeholder="property accessment per acre"
                       name="prop_accessment_per_acre"
                       style={{ color: "black" }}
@@ -170,7 +168,7 @@ const Collateral = () => {
                       type={"button"}
                       style={{ float: "inline-end" }}
                       disabled={isSubmitting}
-                      onClick={() => handleSubmit}
+                      onClick={handleSubmit}
                     />
                   </form>
                 )}

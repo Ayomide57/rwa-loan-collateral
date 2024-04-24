@@ -1,10 +1,17 @@
-import { http, createConfig } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
+import { http } from 'viem';
+import { createConfig } from 'wagmi';
+import { mainnet, sepolia, shardeumSphinx } from 'wagmi/chains';
 
-export const config = createConfig({
-  chains: [mainnet, sepolia],
-  transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
-  },
-})
+declare module 'wagmi' { 
+  interface Register { 
+    config: typeof configA 
+  } 
+} 
+
+
+export const configA = createConfig({ 
+  chains: shardeumSphinx, 
+  transports: { 
+    [shardeumSphinx.id]: http(), 
+  }, 
+}) 

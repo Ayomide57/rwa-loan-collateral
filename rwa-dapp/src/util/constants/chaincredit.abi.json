@@ -82,6 +82,100 @@
   },
   {
     "type": "function",
+    "name": "getCollateral",
+    "inputs": [
+      { "name": "_borrower", "type": "address", "internalType": "address" },
+      {
+        "name": "_property_RegId",
+        "type": "uint256",
+        "internalType": "uint256"
+      }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct ChainCreditContract.CollateralInfo",
+        "components": [
+          {
+            "name": "verification_status",
+            "type": "bool",
+            "internalType": "bool"
+          },
+          { "name": "status", "type": "bool", "internalType": "bool" },
+          { "name": "exist", "type": "bool", "internalType": "bool" },
+          {
+            "name": "document_url",
+            "type": "string",
+            "internalType": "string"
+          },
+          { "name": "borrower", "type": "address", "internalType": "address" },
+          { "name": "acres", "type": "uint8", "internalType": "uint8" },
+          { "name": "price", "type": "uint256", "internalType": "uint256" },
+          {
+            "name": "property_RegId",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "survey_zip_code",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "survey_number",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "prop_accessment_per_acre",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          {
+            "name": "property_type",
+            "type": "string",
+            "internalType": "string"
+          },
+          {
+            "name": "property_area",
+            "type": "string",
+            "internalType": "string"
+          }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
+    "name": "getCompany",
+    "inputs": [
+      { "name": "_borrower", "type": "address", "internalType": "address" }
+    ],
+    "outputs": [
+      {
+        "name": "",
+        "type": "tuple",
+        "internalType": "struct ChainCreditContract.CompanyInfo",
+        "components": [
+          { "name": "company", "type": "address", "internalType": "address" },
+          { "name": "name", "type": "string", "internalType": "string" },
+          { "name": "owner_name", "type": "string", "internalType": "string" },
+          { "name": "location", "type": "string", "internalType": "string" },
+          {
+            "name": "phone_number",
+            "type": "uint256",
+            "internalType": "uint256"
+          },
+          { "name": "existed", "type": "bool", "internalType": "bool" }
+        ]
+      }
+    ],
+    "stateMutability": "view"
+  },
+  {
+    "type": "function",
     "name": "loanList",
     "inputs": [
       { "name": "", "type": "address", "internalType": "address" },

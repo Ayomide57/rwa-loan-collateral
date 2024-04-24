@@ -5,17 +5,20 @@ import CustomInput from "@/components/CustomInput";
 import { useState } from "react";
 import CustomButton from "@/components/Button";
 import { Formik } from "formik";
+import { loanRequest } from "@/util";
 
 
 const LoanRequest = () => {
       const handleLoanRequest = (
         values: {
-          amount: number | undefined;
-          property_RegId: number | undefined;
+          amount: number;
+          property_RegId: number;
         },
         setSubmitting: { (isSubmitting: boolean): void; (arg0: boolean): void }
       ) => {
-        setTimeout(() => {
+        setTimeout(async() => {
+          const response = await loanRequest(values);
+          console.log(response);
           setSubmitting(false);
         }, 400);
       };
@@ -29,8 +32,8 @@ const LoanRequest = () => {
             <div className="p-4">
               <Formik
                 initialValues={{
-                  amount: undefined,
-                  property_RegId: undefined,
+                  amount: 0,
+                  property_RegId: 0,
                 }}
                 onSubmit={(values, { setSubmitting }) =>
                   handleLoanRequest(values, setSubmitting)
@@ -48,7 +51,6 @@ const LoanRequest = () => {
                 }) => (
                   <form onSubmit={handleSubmit}>
                     <CustomInput
-                      value={values.amount}
                       placeholder="Amount"
                       name="amount"
                       style={{ color: "black" }}
@@ -57,7 +59,6 @@ const LoanRequest = () => {
                     />
                     {errors.amount && touched.amount && errors.amount}
                     <CustomInput
-                      value={values.property_RegId}
                       placeholder="property registration number"
                       name="property_RegId"
                       style={{ color: "black" }}
@@ -72,7 +73,7 @@ const LoanRequest = () => {
                       type={"button"}
                       style={{ float: "inline-end" }}
                       disabled={isSubmitting}
-                      onClick={() => handleSubmit}
+                      onClick={handleSubmit}
                     />
                   </form>
                 )}
