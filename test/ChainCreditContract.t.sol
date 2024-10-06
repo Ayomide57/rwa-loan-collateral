@@ -9,7 +9,7 @@ contract ChainCreditContractTest is Test {
 
     function setUp() public {
         // lender contract address
-        chainCredit = new ChainCreditContract(address(0x08d4cBA7460bAc481D1dc37CE5298942d3626273));
+        chainCredit = new ChainCreditContract(10, 5);
     }
 
 

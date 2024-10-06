@@ -6,3 +6,10 @@ libs = ["lib"]
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
 
 remappings = ["@opensezppling/=lib/openzeppelin-contracts/"]
+
+gas_price = 40000000000
+
+[rpc_endpoints]
+sepolia = "${SEPOLIA_RPC_URL}"
+neoX = "${NEO_RPC_URL}"
+

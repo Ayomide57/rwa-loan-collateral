@@ -1,16 +1,32 @@
 ## ChainCredit
 
 ## Title
-Revolutionizing Lending: Blockchain-Based Platform with Real-World Asset Collateral
+Chaincredit is a lending platform that enables businesses to secure loans using real-world assets (RWA) as collateral. While this system provides a valuable service, several challenges hinder its efficiency and user experience:
+
+
 
 ## Problem
 
 Title: Traditional Lending Limitations
 Bullets:
-Lack of accessibility to loans for many individuals and businesses.
-Lengthy approval processes and high interest rates.
-Limited transparency and trust in traditional lending institutions.
-Inadequate collateral options for borrowers.
+Complex Application Process: The requirement for detailed property information from ChainProperty can overwhelm users, leading to incomplete submissions and delays in loan approval.
+
+Inefficient Loan Verification: The current loan verification process may be slow, resulting in longer wait times for businesses in need of immediate financial support.
+
+Confusion Over Payback Options: With multiple payback periods (6, 12, 18, 24, and 36 months), users may find it difficult to understand the financial implications of their choices, potentially leading to poor decision-making.
+
+Delayed Fund Disbursement: After loan approval, ensuring prompt and accurate disbursement of funds is critical to meeting the operational needs of businesses.
+
+Proposed Solution
+To address these challenges, we propose the following solutions:
+
+Streamlined Application Process: Simplify the application interface to guide users step-by-step through the submission of property information. Incorporate tooltips and examples to assist users in providing complete and accurate data.
+
+Enhanced Loan Verification Workflow: Implement an automated verification system that speeds up the loan approval process while maintaining accuracy. This could include real-time data checks and machine learning algorithms to assess risk more efficiently.
+
+Clear Payback Option Guidance: Introduce an interactive loan calculator that visually demonstrates the impact of different payback periods on monthly payments and total interest. This tool will help users make informed decisions about their loan options.
+
+Rapid Fund Disbursement System: Develop an automated disbursement mechanism that ensures funds are released promptly after approval. Establish clear timelines for disbursement and keep users informed throughout the process.
 
 ## Project Information
 
@@ -19,6 +35,39 @@ Inadequate collateral options for borrowers.
 - **Version:** 0.0.1
 - **Summary:** The purpose of this contract is create blockchain based lending platform using Real-world assets as collateral.
 
+## Process 
+
+* Company Registration: Businesses register on the platform to apply for loans.
+* Collateral: Loans secured against real-world assets (RWA).
+* Flexible Payback Periods: Choose from 6, 12, 18, 24, or 36 months.
+
+* Property Information: Gather details from ChainProperty.
+* Verification: Review and approve loan applications.
+* Loan Disbursement: Funds are released upon approval.
+* Total Loan Amount / Number of Payment Periods = Monthly Payment
+
+## Functional
+1. User Registration
+2. Adding Collateral
+3. Loan Request
+4. Admin can create a loan
+5. Loan Disbursal (No Interface)
+6. Update Loan Status
+7. Investors can invest and withdraw after 1 year
+
+
+
+## Features Yet to be Implement
+
+Frontend
+1. Query Loan Lists, Loan Request Lists, Total Users List
+2. Loan Disbursal
+3. Investment page
+
+
+
+
+
 ## Author Information
 
 - **Author:** Quadri Lekan Ayomide Aderojuola
@@ -26,6 +75,8 @@ Inadequate collateral options for borrowers.
 - **Email:** [aderojuolaayomide57@gmail.com](mailto:aderojuolaayomide57@gmail.com)
 - **Email:** [quadriaderojuola@gmail.com](mailto:quadriaderojuola@gmail.com)
 - **Git Repository:** [rwa-loan-collateral](https://github.com/Ayomide57/rwa-loan-collateral)
+- **UI/UX:** Dani
+
 
 ## License
 
@@ -33,16 +84,16 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 
 ## Contract Addresses
 
-ChainCredit Contract is deployed to [0xC45D2a264139C27Ad5E3e2D41DC3cDFd7E8593f1] on shardeum
-Deployer: [0x08d4cBA7460bAc481D1dc37CE5298942d3626273]
-Transaction hash: 0xe56c900ab8161864b617466aeb5dc2df35958345bb685eb465d6c602b3dedf68
-(https://explorer-sphinx.shardeum.org/transaction/0xe56c900ab8161864b617466aeb5dc2df35958345bb685eb465d6c602b3dedf68) on Shardeum.
+ChainCredit Contract is deployed to [0xF0367544DAfCF53649195529f687155B52098ba4] on Neo X
+Deployer: [0x15427D97E45e3374DF934B0f1292C8556D1B79DD]
+Transaction hash: 0x0be9bec451fba979b54f5e6c4be53436a0bad26d93cf17bc4876b431f91beeba
+(https://neoxt4scan.ngd.network/tx/0x0be9bec451fba979b54f5e6c4be53436a0bad26d93cf17bc4876b431f91beeba) on Neo X.
 
 
-Registrar Contract is deployed to [0x8464135c8F25Da09e49BC8782676a84730C318bC] on shardeum
-Deployer: [0x70997970C51812dc3A010C7d01b50e0d17dc79C8]
-Transaction hash: 0x09480c8fdd1b5e9f2769093c3cf03ebd4f47f8c03880eb0c4ae4be6927ea0c47
-The project is deployed to [DeCW2vrjkkproab8aRGyzx4YACC9Rt2NNJD3TA4mz7WR](https://explorer-sphinx.shardeum.org/transaction/0x09480c8fdd1b5e9f2769093c3cf03ebd4f47f8c03880eb0c4ae4be6927ea0c47) on Shardeum.
+Registrar Contract is deployed to [0x1bddabb544fffd89ed263b28cf5827635b60e345] on Neo X
+Deployer: [0x15427D97E45e3374DF934B0f1292C8556D1B79DD]
+Transaction hash: 0x8c1403f83620bc37d931749198ad78000de1957aeb8a8b2c4c85d21536921919
+(https://neoxt4scan.ngd.network/tx/0x8c1403f83620bc37d931749198ad78000de1957aeb8a8b2c4c85d21536921919) on Shardeum.
 
 ## Usage
 
